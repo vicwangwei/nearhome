@@ -1,0 +1,26 @@
+@(provinces: List[Province],provinceForm: Form[Province])
+@import helper._
+@main("Todo list"){
+	<h1>@provinces.size() task(s)</h1>
+	<ul>
+        @for(province <- provinces) {
+            <li>
+                @province.
+                
+                @form(routes.Application.deleteProvince(province.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new task</h2>
+    
+    @form(routes.Application.newProvince()) {
+        
+        @inputText(provinceForm("name")) 
+        
+        <input type="submit" value="Create">
+        
+    }
+}
